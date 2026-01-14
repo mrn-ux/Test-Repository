@@ -1,6 +1,6 @@
-﻿# TestProjectAssignment
+﻿# TestProjectAssignment 
 
-A brief description of the project.
+Checkout functionality test automation
 
 ## Prerequisites
 
