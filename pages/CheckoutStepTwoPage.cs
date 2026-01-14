@@ -22,8 +22,8 @@ namespace TestProjectAssignment.pages
         private readonly By _itemListInCheckoutOverview = By.XPath("//div[@data-test='cart-list']");
         private readonly By _allItemsInCheckoutOverview = By.XPath("./child::*");
         private readonly By _checkoutItemLink = By.XPath("./following::a");
-        private readonly By _lblQuantityOfItemInCheckoutOverview = By.XPath("./div[@data-test='item-quantity']");
-        private readonly By _lblPriceOfItemInCheckoutOverview = By.XPath("./div[@data-test='inventory-item-price']");
+        private readonly By _lblQuantityOfItemInCheckoutOverview = By.XPath("//div[@data-test='item-quantity']");
+        private readonly By _lblPriceOfItemInCheckoutOverview = By.XPath("//div[@data-test='inventory-item-price']");
         private readonly By _lblItemSubTotal = By.XPath("//div[@data-test='subtotal-label']");
         private readonly By _lblItemTax = By.XPath("//div[@data-test='tax-label']");
         private readonly By _lblItemTotal = By.XPath("//div[@data-test='total-label']");
@@ -91,10 +91,10 @@ namespace TestProjectAssignment.pages
                 for (int i = 0; i < allChildItems.Count; i++)
                 {
                     IWebElement itemLink = allChildItems[i].FindElement(_checkoutItemLink);
+                    IWebElement quantityLabel = allChildItems[i].FindElement(_lblQuantityOfItemInCheckoutOverview);
                     _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                     if (itemLink.Text.Equals(itemName))
-                    {
-                        IWebElement quantityLabel = allChildItems[i].FindElement(_lblQuantityOfItemInCheckoutOverview);
+                    { 
                         quantity = quantityLabel.Text;
                         break;
                     }
@@ -117,10 +117,10 @@ namespace TestProjectAssignment.pages
                 for (int i = 0; i < allChildItems.Count; i++)
                 {
                     IWebElement itemLink = allChildItems[i].FindElement(_checkoutItemLink);
+                    IWebElement priceLabel = allChildItems[i].FindElement(_lblPriceOfItemInCheckoutOverview);
                     _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                     if (itemLink.Text.Equals(itemName))
                     {
-                        IWebElement priceLabel = allChildItems[i].FindElement(_lblPriceOfItemInCheckoutOverview);
                         String priceWithDollarSign = priceLabel.Text;
                         price = Convert.ToDouble(priceWithDollarSign.Split('$')[1]);
                         break;
@@ -134,7 +134,7 @@ namespace TestProjectAssignment.pages
             return price;
         }
 
-        public double getTotalPriceOfItemsWithoutTaxInCheckOutOverview()
+        public double GetTotalPriceOfItemsWithoutTaxInCheckOutOverview()
         {
             double totalPriceWithoutTax = 0.0;
             try
@@ -151,7 +151,7 @@ namespace TestProjectAssignment.pages
         }
 
 
-        public double getTaxAmountOfItemsWithoutTaxInCheckOutOverview()
+        public double getTaxAmountOfItemsInCheckOutOverview()
         {
             double totalTax = 0.0;
             try
