@@ -81,9 +81,9 @@ namespace TestProjectAssignment.pages
             return value;
         }
 
-        public String GetQuantityOfItemInCheckOutOverview(String itemName)
+        public int GetQuantityOfItemInCheckOutOverview(String itemName)
         {
-            String quantity = "";
+            int quantity = 0;
             try
             {
                 IWebElement itemListElement = _webDriverWait.Until(ExpectedConditions.ElementIsVisible(_itemListInCheckoutOverview));
@@ -95,7 +95,7 @@ namespace TestProjectAssignment.pages
                     _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                     if (itemLink.Text.Equals(itemName))
                     { 
-                        quantity = quantityLabel.Text;
+                        quantity = Convert.ToInt16(quantityLabel.Text);
                         break;
                     }
                 }

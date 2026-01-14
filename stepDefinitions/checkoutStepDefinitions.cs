@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework.Legacy;
 using OpenQA.Selenium;
 using Reqnroll;
+using TestProjectAssignment.Data_Mapper;
 using TestProjectAssignment.pages;
 
 namespace TestProjectAssignment.stepDefinitions
@@ -32,19 +33,23 @@ namespace TestProjectAssignment.stepDefinitions
 
     
         [Given(@"User is on the e-commerce platform homepage")]
-        public void GivenUserIsOnTheEcommercePlatformHomepage()
+        public void GivenUserIsOnTheEcommercePlatformHomepage(DataTable table)
         {
-            loginPage.EnterUserName(scenarioContext.Get<String>("UserName"));
-            loginPage.EnterPassword(scenarioContext.Get<String>("Password"));
+            var user = table.CreateInstance<User>();
+            loginPage.EnterUserName(user.UserName);
+            loginPage.EnterPassword(user.Password);
             loginPage.clickLoginButton();
 
         }
 
 
         [Given(@"User add the required product to the shopping cart")]
-        public void GivenUserAddTheItemToShoppingCart()
+        public void GivenUserAddTheItemToShoppingCart(DataTable table)
         {
-            inventoryPage.ClickAddToCartButtonInItem(scenarioContext.Get<String>("ItemName"));
+            var items = table.CreateSet<ItemData>();
+            foreach (var item in items)
+                inventoryPage.ClickAddToCartButtonInItem(item.ItemName);
+
 
         }
 
@@ -66,12 +71,13 @@ namespace TestProjectAssignment.stepDefinitions
 
 
         [When(@"User enter valid checkout information")]
-        public void WhenUserEnterValidCheckoutInformation()
+        public void WhenUserEnterValidCheckoutInformation(DataTable table)
         {
+            var CheckoutInformation = table.CreateInstance<CheckoutInformation>();
 
-            checkoutStepOnePage.EnterFirstName(scenarioContext.Get<String>("FirstName"));
-            checkoutStepOnePage.EnterLastName(scenarioContext.Get<String>("LastName"));
-            checkoutStepOnePage.EnterZipPostalCode(scenarioContext.Get<String>("PostalCode"));
+            checkoutStepOnePage.EnterFirstName(CheckoutInformation.FirstName);
+            checkoutStepOnePage.EnterLastName(CheckoutInformation.LastName);
+            checkoutStepOnePage.EnterZipPostalCode(CheckoutInformation.PostalCode);
             checkoutStepOnePage.ClickContinueButton();
 
         }
@@ -85,16 +91,20 @@ namespace TestProjectAssignment.stepDefinitions
 
 
         [Then(@"Order details and total price should be correct")]
-        public void ThenOrderDetailsAndTotalPriceShouldBeCorrect()
+        public void ThenOrderDetailsAndTotalPriceShouldBeCorrect(DataTable table)
         {
+            var items = table.CreateSet<ItemData>();
+            double totalAmount = 0.0;
+            foreach (var item in items)
+            {
+                Assert.That(checkoutStepTwoPage.IsSelectedItemDisplayedInCheckoutOverview(item.ItemName), Is.True, "Selected item is not displayed in checkout overview page");
+                Assert.That(checkoutStepTwoPage.GetQuantityOfItemInCheckOutOverview(item.ItemName), Is.EqualTo(item.Quantity), "Item quantity in checkout overview is incorrect");
+                Assert.That(checkoutStepTwoPage.GetPriceOfItem(item.ItemName), Is.EqualTo(item.ItemPrice), "Item price in checkout overview is incorrect");
+                totalAmount = totalAmount + item.ItemPrice ;
+            }
+            Assert.That(checkoutStepTwoPage.GetTotalPriceOfItemsWithoutTaxInCheckOutOverview(), Is.EqualTo(totalAmount), "Total Item price without tax in checkout overview is incorrect");
+            Assert.That(checkoutStepTwoPage.getTotalPriceOfItemsWithTaxInCheckOutOverview(), Is.EqualTo(totalAmount + checkoutStepTwoPage.getTaxAmountOfItemsInCheckOutOverview()), "Total item price in checkout overview is incorrect");
 
-            Assert.That(checkoutStepTwoPage.IsSelectedItemDisplayedInCheckoutOverview(scenarioContext.Get<String>("ItemName")), Is.True, "Selected item is not displayed in checkout overview page");
-            Assert.That(checkoutStepTwoPage.GetQuantityOfItemInCheckOutOverview(scenarioContext.Get<String>("ItemName")), Is.EqualTo("1"), "Item quantity in checkout overview is incorrect");
-            Assert.That(checkoutStepTwoPage.GetPriceOfItem(scenarioContext.Get<String>("ItemName")), Is.EqualTo(scenarioContext.Get<double>("ItemPrice")), "Item price in checkout overview is incorrect");
-            Assert.That(checkoutStepTwoPage.GetTotalPriceOfItemsWithoutTaxInCheckOutOverview(), Is.EqualTo(scenarioContext.Get<double>("ItemPrice")), "Total Item price without tax in checkout overview is incorrect");
-            double totalAmount = scenarioContext.Get<double>("ItemPrice") + checkoutStepTwoPage.getTaxAmountOfItemsInCheckOutOverview();
-            Assert.That(checkoutStepTwoPage.getTotalPriceOfItemsWithTaxInCheckOutOverview(), Is.EqualTo(totalAmount), "Total tem price in checkout overview is incorrect");
-        
         }
 
 
