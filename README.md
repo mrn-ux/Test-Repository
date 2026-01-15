@@ -29,3 +29,24 @@ Follow these steps to get the project running locally:
     dotnet tests
     ```
   or using Test Explorer in Visual Studio.
+
+
+  ## Getting Started
+
+Follow these steps to get the project running remotely on GitHub:
+
+1. navigate to the repository on GitHub. https://github.com/mrn-ux/Test-Repository
+
+2. Click on the "Actions" tab to view the available workflows.
+
+3. Click the "Build And Test" workflow from the list on the left.
+
+4. Click the "Run workflow" button to trigger the workflow manually.
+
+5. Select the master branch to run the workflow.
+
+6. Select the log level as "Debug" for detailed logs.
+
+7. Click the "Run workflow" button to start the process.
+
+
