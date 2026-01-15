@@ -57,7 +57,7 @@ namespace TestProjectAssignment.pages
             {
                 IWebElement itemListElement = _webDriverWait.Until(ExpectedConditions.ElementIsVisible(_itemListInCart));
                 IList<IWebElement> allChildItems = itemListElement.FindElements(_allCartItems);
-                for (int i=2; i<allChildItems.Count; i++ )
+                for (int i = 2; i < allChildItems.Count; i++)
                 {
                     IWebElement itemLink = allChildItems[i].FindElement(_cartItemLink);
                     if (itemLink.Text.Equals(itemName))

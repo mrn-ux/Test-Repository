@@ -31,7 +31,7 @@ namespace TestProjectAssignment.stepDefinitions
             checkoutCompletePage = new CheckoutCompletePage(driver);
         }
 
-    
+
         [Given(@"User is on the e-commerce platform homepage")]
         public void GivenUserIsOnTheEcommercePlatformHomepage(DataTable table)
         {
@@ -86,7 +86,7 @@ namespace TestProjectAssignment.stepDefinitions
         [Then(@"User should see an order confirmation page")]
         public void ThenUserShouldSeeOrderConfirmationPage()
         {
-           Assert.That(checkoutStepTwoPage.IsCheckoutOverviewPageTitleDisplayed(), Is.True, "User is not redirected to order confirmation page");     
+            Assert.That(checkoutStepTwoPage.IsCheckoutOverviewPageTitleDisplayed(), Is.True, "User is not redirected to order confirmation page");
         }
 
 
@@ -100,7 +100,7 @@ namespace TestProjectAssignment.stepDefinitions
                 Assert.That(checkoutStepTwoPage.IsSelectedItemDisplayedInCheckoutOverview(item.ItemName), Is.True, "Selected item is not displayed in checkout overview page");
                 Assert.That(checkoutStepTwoPage.GetQuantityOfItemInCheckOutOverview(item.ItemName), Is.EqualTo(item.Quantity), "Item quantity in checkout overview is incorrect");
                 Assert.That(checkoutStepTwoPage.GetPriceOfItem(item.ItemName), Is.EqualTo(item.ItemPrice), "Item price in checkout overview is incorrect");
-                totalAmount = totalAmount + item.ItemPrice ;
+                totalAmount = totalAmount + item.ItemPrice;
             }
             Assert.That(checkoutStepTwoPage.GetTotalPriceOfItemsWithoutTaxInCheckOutOverview(), Is.EqualTo(totalAmount), "Total Item price without tax in checkout overview is incorrect");
             Assert.That(checkoutStepTwoPage.getTotalPriceOfItemsWithTaxInCheckOutOverview(), Is.EqualTo(totalAmount + checkoutStepTwoPage.getTaxAmountOfItemsInCheckOutOverview()), "Total item price in checkout overview is incorrect");
@@ -111,7 +111,7 @@ namespace TestProjectAssignment.stepDefinitions
         [When(@"User finish checkout successfully")]
         public void ThenUserShouldFinishCheckoutSuccessfully()
         {
-               checkoutStepTwoPage.ClickFinishButton();
+            checkoutStepTwoPage.ClickFinishButton();
         }
 
 
@@ -122,7 +122,7 @@ namespace TestProjectAssignment.stepDefinitions
             Assert.That(checkoutCompletePage.IsCheckoutCompletePageTitleDisplayed(), Is.True, "User is not redirected to check out complete page");
             Assert.That(checkoutCompletePage.GetThankYouMessageInCheckOutCompletion(), Is.EqualTo("Thank you for your order!"), "Thank you message is invalid");
             checkoutCompletePage.ClickBackToHomeButton();
-        
+
         }
 
 

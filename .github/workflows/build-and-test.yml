@@ -46,6 +46,23 @@ on:
   schedule:
     # runs the workflow every day at 12:00 UTC
     - cron: '0 12 * * *' 
+    # runs the workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      run_tests:
+        description: 'Run tests as well?'
+        required: true
+        default: 'true'
+        type: boolean
 
 jobs:
 

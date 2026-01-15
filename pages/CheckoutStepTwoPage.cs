@@ -39,7 +39,7 @@ namespace TestProjectAssignment.pages
             _logger = factory.CreateLogger<CheckoutStepTwoPage>();
         }
 
-        
+
         public bool IsCheckoutOverviewPageTitleDisplayed()
         {
             bool value = false;
@@ -94,7 +94,7 @@ namespace TestProjectAssignment.pages
                     IWebElement quantityLabel = allChildItems[i].FindElement(_lblQuantityOfItemInCheckoutOverview);
                     _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                     if (itemLink.Text.Equals(itemName))
-                    { 
+                    {
                         quantity = Convert.ToInt16(quantityLabel.Text);
                         break;
                     }
