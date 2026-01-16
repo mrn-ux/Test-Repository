@@ -15,8 +15,6 @@ namespace TestProjectAssignment.pages
         private readonly WebDriverWait _webDriverWait;
         private readonly ILogger _logger;
 
-        //Locators
-
         private readonly By _cartPageTitle = By.XPath("//div[@data-test='secondary-header']/span[contains(text(),'Your Cart')]");
         private readonly By _itemListInCart = By.XPath("//div[@data-test='cart-list']");
         private readonly By _allCartItems = By.XPath("./child::*");
@@ -26,7 +24,6 @@ namespace TestProjectAssignment.pages
         private readonly By _checkoutBtn = By.Id("checkout");
         private readonly By _continueShoppingBtn = By.Id("continue-shopping");
 
-
         public CartPage(IWebDriver driver)
         {
             _driver = driver;
@@ -35,7 +32,7 @@ namespace TestProjectAssignment.pages
             _logger = factory.CreateLogger<CartPage>();
         }
 
-        public bool isCartPageTitleDisplayed()
+        public bool IsCartPageTitleDisplayed()
         {
             bool value = false;
             try
@@ -146,4 +143,5 @@ namespace TestProjectAssignment.pages
         }
 
     }
+
 }

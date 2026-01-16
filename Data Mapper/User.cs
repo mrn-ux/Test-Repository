@@ -10,4 +10,5 @@ namespace TestProjectAssignment.stepDefinitions
         public required string Password { get; set; }
 
     }
+
 }

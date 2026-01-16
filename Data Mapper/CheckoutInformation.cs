@@ -11,4 +11,5 @@ namespace TestProjectAssignment.Data_Mapper
         public required string PostalCode { get; set; }
 
     }
+
 }

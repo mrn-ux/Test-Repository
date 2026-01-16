@@ -45,7 +45,7 @@ Follow these steps to get the project running remotely on GitHub:
 
 5. Select the master branch to run the workflow.
 
-6. Select the log level as "Debug" for detailed logs.
+6. Select the log level as "Debug".
 
 7. Click the "Run workflow" button to start the process.
 

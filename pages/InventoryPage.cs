@@ -6,14 +6,12 @@ using SeleniumExtras.WaitHelpers;
 
 namespace TestProjectAssignment.pages
 {
-
     public class InventoryPage
     {
+
         private readonly IWebDriver _driver;
         private readonly WebDriverWait _webDriverWait;
         private readonly ILogger _logger;
-
-        //Locators
 
         private readonly By _applicationTitle = By.Id("menu_button_container");
         private readonly By _inventoryPageTitle = By.XPath("//div[@data-test='secondary-header']/span[contains(text(),'Products')]");
@@ -105,7 +103,6 @@ namespace TestProjectAssignment.pages
             catch (Exception ex)
             {
                 _logger.LogError($"Error while clicking item title: {ex.StackTrace}");
-
             }
         }
 
@@ -125,16 +122,13 @@ namespace TestProjectAssignment.pages
                         addToCartBtn.Click();
                         break;
                     }
-
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error while clicking add to cart button: {ex.StackTrace}");
-
             }
         }
-
 
         public void ClickRemoveFromCartButtonInItem(String itemName)
         {
@@ -156,7 +150,6 @@ namespace TestProjectAssignment.pages
             catch (Exception ex)
             {
                 _logger.LogError($"Error while clicking remove from cart button: {ex.StackTrace}");
-
             }
         }
 
@@ -171,8 +164,8 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while clicking shopping cart button: {ex.StackTrace}");
             }
-
         }
 
     }
+
 }

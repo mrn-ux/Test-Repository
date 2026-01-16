@@ -11,4 +11,5 @@ namespace TestProjectAssignment.Data_Mapper
         public required double ItemPrice { get; set; }
 
     }
+
 }

@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace TestProjectAssignment.pages
@@ -15,15 +14,12 @@ namespace TestProjectAssignment.pages
         private readonly WebDriverWait _webDriverWait;
         private readonly ILogger _logger;
 
-        //Locators
-
         private readonly By _checkOutPageTitle = By.XPath("//div[@data-test='secondary-header']/span[contains(text(),'Checkout: Your Information')]");
         private readonly By _firstNameTxtBox = By.Id("first-name");
         private readonly By _lastNameTxtBox = By.Id("last-name");
         private readonly By _zipPostalCodeTxtBox = By.Id("postal-code");
         private readonly By _continueBtn = By.Id("continue");
         private readonly By _cancelBtn = By.Id("cancel");
-
 
         public CheckoutStepOnePage(IWebDriver driver)
         {
@@ -60,12 +56,10 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while entering First Name: {ex.StackTrace}");
             }
-
         }
 
         public void EnterLastName(String lastName)
         {
-
             try
             {
                 IWebElement lastNameElement = _webDriverWait.Until(ExpectedConditions.ElementIsVisible(_lastNameTxtBox));
@@ -75,12 +69,10 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while entering Last Name: {ex.StackTrace}");
             }
-
         }
 
         public void EnterZipPostalCode(String zipPostalCode)
         {
-
             try
             {
                 IWebElement zipPostalCodeElement = _webDriverWait.Until(ExpectedConditions.ElementIsVisible(_zipPostalCodeTxtBox));
@@ -90,7 +82,6 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while entering Zip Postal Code: {ex.StackTrace}");
             }
-
         }
 
         public void ClickCancelButton()
@@ -104,7 +95,6 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while clicking cancel button: {ex.StackTrace}");
             }
-
         }
 
         public void ClickContinueButton()
@@ -118,10 +108,8 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while clicking continue button: {ex.StackTrace}");
             }
-
-
         }
 
-
     }
+
 }

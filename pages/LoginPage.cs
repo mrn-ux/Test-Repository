@@ -14,26 +14,20 @@ namespace TestProjectAssignment.pages
         private readonly WebDriverWait _webDriverWait;
         private readonly ILogger _logger;
 
-        //Locators
-
         private readonly By _usernameTxtBox = By.Id("user-name");
         private readonly By _passwordTxtBox = By.Id("password");
         private readonly By _loginBtn = By.Id("login-button");
 
-
         public LoginPage(IWebDriver driver)
         {
-
             _driver = driver;
             _webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
             _logger = factory.CreateLogger<LoginPage>();
-
         }
 
         public void EnterUserName(String username)
         {
-
             try
             {
                 IWebElement userNameElement = _webDriverWait.Until(ExpectedConditions.ElementIsVisible(_usernameTxtBox));
@@ -43,12 +37,10 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while entering userName: {ex.StackTrace}");
             }
-
         }
 
         public void EnterPassword(String password)
         {
-
             try
             {
                 IWebElement passwordElement = _webDriverWait.Until(ExpectedConditions.ElementIsVisible(_passwordTxtBox));
@@ -57,14 +49,11 @@ namespace TestProjectAssignment.pages
             catch (Exception ex)
             {
                 _logger.LogError($"Error while entering password: {ex.StackTrace}");
-
             }
-
         }
 
         public void clickLoginButton()
         {
-
             try
             {
                 IWebElement loginButtonElement = _webDriverWait.Until(ExpectedConditions.ElementToBeClickable(_loginBtn));
@@ -73,10 +62,9 @@ namespace TestProjectAssignment.pages
             catch (Exception ex)
             {
                 _logger.LogError($"Error while clicking login button: {ex.StackTrace}");
-
             }
-
         }
 
     }
+
 }

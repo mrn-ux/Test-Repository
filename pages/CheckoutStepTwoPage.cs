@@ -16,8 +16,6 @@ namespace TestProjectAssignment.pages
         private readonly WebDriverWait _webDriverWait;
         private readonly ILogger _logger;
 
-        //Locators
-
         private readonly By _checkOutOverviewPageTitle = By.XPath("//div[@data-test='secondary-header']/span[contains(text(),'Checkout: Overview')]");
         private readonly By _itemListInCheckoutOverview = By.XPath("//div[@data-test='cart-list']");
         private readonly By _allItemsInCheckoutOverview = By.XPath("./child::*");
@@ -30,7 +28,6 @@ namespace TestProjectAssignment.pages
         private readonly By _finishBtn = By.Id("finish");
         private readonly By _cancelBtn = By.Id("cancel");
 
-
         public CheckoutStepTwoPage(IWebDriver driver)
         {
             _driver = driver;
@@ -38,7 +35,6 @@ namespace TestProjectAssignment.pages
             ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
             _logger = factory.CreateLogger<CheckoutStepTwoPage>();
         }
-
 
         public bool IsCheckoutOverviewPageTitleDisplayed()
         {
@@ -150,7 +146,6 @@ namespace TestProjectAssignment.pages
             return totalPriceWithoutTax;
         }
 
-
         public double getTaxAmountOfItemsInCheckOutOverview()
         {
             double totalTax = 0.0;
@@ -207,10 +202,8 @@ namespace TestProjectAssignment.pages
             {
                 _logger.LogError($"Error while clicking cancel button: {ex.StackTrace}");
             }
-
         }
 
     }
-
 
 }

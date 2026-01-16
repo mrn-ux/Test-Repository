@@ -3,18 +3,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace TestProjectAssignment.pages
 {
     public class CheckoutCompletePage
     {
+
         private readonly IWebDriver _driver;
         private readonly WebDriverWait _webDriverWait;
         private readonly ILogger _logger;
-
-        //Locators
 
         private readonly By _checkOutCompletePageTitle = By.XPath("//div[@data-test='secondary-header']/span[contains(text(),'Checkout: Complete!')]");
         private readonly By _thankYouMessage = By.XPath("//h2[@data-test='complete-header']");
@@ -72,4 +70,5 @@ namespace TestProjectAssignment.pages
         }
 
     }
+
 }
