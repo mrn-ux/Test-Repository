@@ -35,7 +35,7 @@ Follow these steps to get the project running locally:
 
 Follow these steps to get the project running remotely on GitHub:
 
-1. navigate to the repository on GitHub. https://github.com/mrn-ux/Test-Repository
+1. Navigate to the repository on GitHub. https://github.com/mrn-ux/Test-Repository
 
 2. Click on the "Actions" tab to view the available workflows.
 
