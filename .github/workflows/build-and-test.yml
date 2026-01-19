@@ -107,15 +107,14 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore
 
-    - name: Run Tests & Generate Report
-      run: dotnet test --logger trx --results-directory TestResults --collect "Allure" 
+    - name: Run Tests
+      run: dotnet test --no-build --verbosity normal 
 
     - name: Upload Test Results Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: test-results-report-${{ github.run_id }}
-        path: TestResults/
+        name: execution_results
+        path: bin/Debug/net10.0/TestResults/execution_results_report.html
         overwrite: true
       if: always() 
-
   
