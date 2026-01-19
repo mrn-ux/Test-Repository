@@ -107,9 +107,6 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore
 
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
-
    - name: Run Tests & Generate Report
       run: dotnet test --logger trx --results-directory TestResults --collect "Allure" 
 
