@@ -110,5 +110,18 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
 
+    - name: Upload Test Report Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Reqnroll-LivingDoc-Report
+        path: |
+          ./Test_Execution_Results.html 
+          ./Test_Execution_Results.json 
+
+    - name: Publish Test Results (Optional, for GitHub UI integration)
+      uses: EnricoMi/publish-unit-test-result-action@v2.16.1
+      if: always()
+      with:
+        files: "**/*.trx" 
 
   
