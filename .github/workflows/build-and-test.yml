@@ -107,7 +107,7 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore
 
-   - name: Run Tests & Generate Report
+    - name: Run Tests & Generate Report
       run: dotnet test --logger trx --results-directory TestResults --collect "Allure" 
 
     - name: Upload Test Results Artifact
