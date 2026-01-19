@@ -113,7 +113,7 @@ jobs:
     - name: Upload Test Results Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: reqnroll-html-report
+        name: test-results-report
         path: TestResults/
       if: always() 
 
