@@ -118,10 +118,4 @@ jobs:
           ./Test_Execution_Results.html 
           ./Test_Execution_Results.json 
 
-    - name: Publish Test Results (Optional, for GitHub UI integration)
-      uses: EnricoMi/publish-unit-test-result-action@v2.16.1
-      if: always()
-      with:
-        files: "**/*.trx" 
-
   
