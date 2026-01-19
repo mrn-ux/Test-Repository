@@ -110,15 +110,14 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
 
-    - name: Generate Living Documentation HTML report
-      run: livingdoc feature-folder . --output-type HTML -t bin/Release/net8.0/TestExecution.json -o LivingDoc.html
+   - name: Run Tests & Generate Report
+      run: dotnet test --logger trx --results-directory TestResults --collect "Allure" 
 
-    - name: Upload Test Report Artifact
+    - name: Upload Test Results Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Reqnroll-LivingDoc-Report
-        path: |
-          ./Test_Execution_Results.html 
-          ./Test_Execution_Results.json 
+        name: reqnroll-html-report
+        path: TestResults/
+      if: always() 
 
   
