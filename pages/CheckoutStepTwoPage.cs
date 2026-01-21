@@ -61,10 +61,10 @@ namespace TestProjectAssignment.pages
                 for (int i = 0; i < allChildItems.Count; i++)
                 {
                     IWebElement itemLink = allChildItems[i].FindElement(_checkoutItemLink);
-                    _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                     if (itemLink.Text.Equals(itemName))
                     {
                         value = true;
+                        _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                         break;
                     }
                 }
