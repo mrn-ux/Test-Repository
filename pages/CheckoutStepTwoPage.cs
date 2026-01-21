@@ -88,7 +88,6 @@ namespace TestProjectAssignment.pages
                 {
                     IWebElement itemLink = allChildItems[i].FindElement(_checkoutItemLink);
                     IWebElement quantityLabel = allChildItems[i].FindElement(_lblQuantityOfItemInCheckoutOverview);
-                    _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                     if (itemLink.Text.Equals(itemName))
                     {
                         quantity = Convert.ToInt16(quantityLabel.Text);
@@ -114,7 +113,6 @@ namespace TestProjectAssignment.pages
                 {
                     IWebElement itemLink = allChildItems[i].FindElement(_checkoutItemLink);
                     IWebElement priceLabel = allChildItems[i].FindElement(_lblPriceOfItemInCheckoutOverview);
-                    _logger.LogInformation($"Item found in checkout overview: {itemLink.Text}");
                     if (itemLink.Text.Equals(itemName))
                     {
                         String priceWithDollarSign = priceLabel.Text;
