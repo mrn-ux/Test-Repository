@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Reqnroll;
 using Reqnroll.BoDi;
+using TestProjectAssignment.pages;
 
 namespace TestProjectAssignment.hooks
 {
@@ -26,16 +27,18 @@ namespace TestProjectAssignment.hooks
             chromeOptions.AddUserProfilePreference("profile.password_manager_leak_detection", false);
             IWebDriver driver = new ChromeDriver(chromeOptions);
             _objectContainer.RegisterInstanceAs<IWebDriver>(driver);
+            _objectContainer.RegisterTypeAs<LoginPage, LoginPage>();
+            _objectContainer.RegisterTypeAs<InventoryPage, InventoryPage>();
+            _objectContainer.RegisterTypeAs<CartPage, CartPage>();
+            _objectContainer.RegisterTypeAs<CheckoutCompletePage, CheckoutCompletePage>();
+            _objectContainer.RegisterTypeAs<CheckoutStepOnePage, CheckoutStepOnePage>();
+            _objectContainer.RegisterTypeAs<CheckoutStepTwoPage, CheckoutStepTwoPage>();
             driver.Manage().Window.Maximize();
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
             string url = config["AppSettings:AppUrl"] ?? String.Empty;
-            if (!string.IsNullOrEmpty(url))
-            {
-                Environment.SetEnvironmentVariable("APP_URL", url, EnvironmentVariableTarget.Process);
-            }
             driver.Navigate().GoToUrl(url);
         }
 

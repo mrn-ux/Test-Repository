@@ -11,7 +11,6 @@ namespace TestProjectAssignment.stepDefinitions
     {
 
         private readonly IWebDriver driver;
-        private readonly ScenarioContext scenarioContext;
         private LoginPage loginPage;
         private InventoryPage inventoryPage;
         private CartPage cartPage;
@@ -19,16 +18,15 @@ namespace TestProjectAssignment.stepDefinitions
         private CheckoutStepOnePage checkoutStepOnePage;
         private CheckoutStepTwoPage checkoutStepTwoPage;
 
-        public CheckoutStepDefinitions(IWebDriver driver, ScenarioContext scenarioContext)
+        public CheckoutStepDefinitions(IWebDriver driver, LoginPage loginPage, InventoryPage inventoryPage, CartPage cartPage, CheckoutStepOnePage checkoutStepOnePage, CheckoutStepTwoPage checkoutStepTwoPage, CheckoutCompletePage checkoutCompletePage)
         {
             this.driver = driver;
-            this.scenarioContext = scenarioContext;
-            loginPage = new LoginPage(driver);
-            inventoryPage = new InventoryPage(driver);
-            cartPage = new CartPage(driver);
-            checkoutStepOnePage = new CheckoutStepOnePage(driver);
-            checkoutStepTwoPage = new CheckoutStepTwoPage(driver);
-            checkoutCompletePage = new CheckoutCompletePage(driver);
+            this.loginPage = loginPage;
+            this.inventoryPage = inventoryPage;
+            this.cartPage = cartPage;
+            this.checkoutCompletePage = checkoutCompletePage;
+            this.checkoutStepOnePage = checkoutStepOnePage;
+            this.checkoutStepTwoPage = checkoutStepTwoPage;
         }
 
         [Given(@"User is on the e-commerce platform homepage")]

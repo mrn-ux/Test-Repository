@@ -72,7 +72,7 @@ jobs:
       matrix:
         configuration: [Debug, Release]
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
+    runs-on: windows-latest  # For a list of available runner types, refer tozint
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
@@ -107,14 +107,15 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore
 
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+    - name: Run Tests & Generate Report
+      run: dotnet test --logger trx --results-directory TestResults --collect "Allure" 
+   
 
     - name: Upload Test Results Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: execution_results
-        path: bin/Debug/net10.0/TestResults/execution_results_report.html
+        name: test-results-report-${{ github.run_id }}
+        path: TestResults/
         overwrite: true
       if: always() 
   
