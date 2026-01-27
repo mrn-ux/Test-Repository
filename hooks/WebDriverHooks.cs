@@ -4,6 +4,9 @@ using OpenQA.Selenium.Chrome;
 using Reqnroll;
 using Reqnroll.BoDi;
 using TestProjectAssignment.pages;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager.Helpers;
 
 namespace TestProjectAssignment.hooks
 {
@@ -25,6 +28,10 @@ namespace TestProjectAssignment.hooks
             chromeOptions.AddUserProfilePreference("credentials_enable_service", false);
             chromeOptions.AddUserProfilePreference("profile.password_manager_enabled", false);
             chromeOptions.AddUserProfilePreference("profile.password_manager_leak_detection", false);
+            new DriverManager().SetUpDriver(
+            new ChromeConfig(),
+            VersionResolveStrategy.MatchingBrowser
+            );
             IWebDriver driver = new ChromeDriver(chromeOptions);
             _objectContainer.RegisterInstanceAs<IWebDriver>(driver);
             _objectContainer.RegisterTypeAs<LoginPage, LoginPage>();
